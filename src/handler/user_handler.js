@@ -35,6 +35,11 @@ async function login(req, res) {
     user: { username: user.username, email: user.email }
   });
 }
+async function logout(req, res) {
+  res.clearCookie("jwt");
+  res.json({ status: "done" });
+}
+
 async function changePassword(req, res) {
   const userId = req.user.userid;
   const user = await User.findById(userId);
@@ -51,5 +56,6 @@ async function changePassword(req, res) {
 module.exports = {
   registerNewUser,
   login,
+  logout,
   changePassword
 };

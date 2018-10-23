@@ -8,6 +8,8 @@ router.post("/signup", handleAsyncError(userHandler.registerNewUser));
 
 router.post("/login", handleAsyncError(userHandler.login));
 
+router.post("/logout", handleAsyncError(userHandler.logout));
+
 router.put(
   "/change_password",
   jwt_validation.required,

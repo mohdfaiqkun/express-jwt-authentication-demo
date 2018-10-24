@@ -129,11 +129,11 @@ describe("Setting and validation of password field on User model", () => {
 
   let user = new User({ username, email });
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await user.save();
   });
 
-  it("should save user passwords into hash and salt fields of User model", async () => {
+  it("should save user passwords into hash and salt fields of User model", () => {
     expect(user.passwordSalt).toBeUndefined();
     expect(user.passwordHash).toBeUndefined();
 

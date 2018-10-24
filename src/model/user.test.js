@@ -129,11 +129,11 @@ describe("Setting and validation of password field on User model", () => {
 
   let user = new User({ username, email });
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await user.save();
   });
 
-  it("should save user passwords into hash and salt fields of User model", async () => {
+  it("should save user passwords into hash and salt fields of User model", () => {
     expect(user.passwordSalt).toBeUndefined();
     expect(user.passwordHash).toBeUndefined();
 
@@ -164,7 +164,7 @@ describe("JWT tokens", () => {
     expect(user.verifyJWT(token)).toBeTruthy();
   });
 
-  test("invalid JWT toekns cannot be verified", () => {
+  test("invalid JWT tokens cannot be verified", () => {
     expect(user.verifyJWT("invalid token")).toBeFalsy();
   });
 });

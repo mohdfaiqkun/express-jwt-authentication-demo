@@ -9,6 +9,8 @@ const express = require("express"),
   morgan = require("morgan"),
   logger = require("./logger");
 
+const mongoose = require("mongoose");
+
 const isProduction = process.env.NODE_ENV === "production";
 
 const app = express();
@@ -22,6 +24,12 @@ app.use(cookieParser());
 
 if (process.env.NODE_ENV === "development") {
   app.use(errorhandler());
+}
+
+const isMongooseConnectionProvided = process.env.NODE_ENV === "integration";
+
+if (!isMongooseConnectionProvided) {
+  mongoose.connect(process.env.MONGODB_URL);
 }
 
 // routes

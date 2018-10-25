@@ -10,6 +10,7 @@ const express = require("express"),
   logger = require("./logger");
 
 const mongoose = require("mongoose");
+const { passport } = require("./middleware/passport_middleware");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -21,6 +22,8 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+app.use(passport.initialize());
 
 if (process.env.NODE_ENV === "development") {
   app.use(errorhandler());

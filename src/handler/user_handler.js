@@ -41,8 +41,9 @@ async function logout(req, res) {
 }
 
 async function changePassword(req, res) {
-  const userId = req.user.userid;
-  const user = await User.findById(userId);
+  // const userId = req.user.userid;
+  // const user = await User.findById(userId);
+  const user = req.user;
 
   const newUserProfile = req.body.user;
   if (newUserProfile.password) {

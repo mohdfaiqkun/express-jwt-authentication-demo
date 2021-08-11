@@ -5,8 +5,11 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "cross-env NODE_ENV=development nodemon src/server.js",
-    "test": "jest",
+    "test": "jest --runInBand ./test_helper/in_memory_mongodb_setup",
     "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -15,9 +18,13 @@
     "debug": "~2.6.9",
     "dotenv": "^6.1.0",
     "errorhandler": "^1.5.0",
+    "event-stream": "^4.0.1",
     "express": "~4.16.0",
     "express-async-wrap": "^1.0.0",
     "http-status": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.6",
+    "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.0",
     "winston": "^3.1.0"
   },
@@ -28,6 +35,8 @@
     "eslint-plugin-jest": "^21.25.1",
     "eslint-plugin-prettier": "^3.0.0",
     "jest": "^23.6.0",
+    "mongodb-memory-server": "^7.3.6",
+    "mongoose-fixture-loader": "^1.0.2",
     "nodemon": "^1.18.4",
     "prettier": "^1.14.3",
     "supertest": "^3.3.0"

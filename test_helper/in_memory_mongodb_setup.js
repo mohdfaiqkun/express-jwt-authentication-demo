@@ -12,7 +12,7 @@ module.exports.connect = async () => {
     useCreateIndex: true,
     autoReconnect: true,
     reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: 1000
+    reconnectInterval: 1000,
   };
 
   await mongoose.connect(

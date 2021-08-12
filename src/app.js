@@ -6,7 +6,8 @@ const express = require("express"),
   errorhandler = require("errorhandler"),
   status = require("http-status"),
   morgan = require("morgan"),
-  logger = require("./logger");
+  logger = require("./logger"),
+  cookieParser = require("cookie-parser");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -24,6 +25,9 @@ if (process.env.NODE_ENV === "development") {
 // routes
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
+
+const userRouter = require("./routes/user_api");
+app.use("/api/user", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -61,5 +65,7 @@ app.use(function(err, req, res, next) {
     }
   });
 });
+
+app.use(cookieParser());
 
 module.exports = app;

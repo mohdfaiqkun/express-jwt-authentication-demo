@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "cross-env NODE_ENV=development nodemon src/server.js",
-    "test": "jest --runInBand ./test_helper/in_memory_mongodb_setup",
+    "test": "jest --runInBand",
     "test:watch": "jest --watch"
   },
   "jest": {
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "cookie-parser": "~1.4.3",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
     "dotenv": "^6.1.0",
@@ -21,6 +21,7 @@
     "event-stream": "^4.0.1",
     "express": "~4.16.0",
     "express-async-wrap": "^1.0.0",
+    "express-jwt": "^6.0.0",
     "http-status": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.6",
@@ -39,6 +40,6 @@
     "mongoose-fixture-loader": "^1.0.2",
     "nodemon": "^1.18.4",
     "prettier": "^1.14.3",
-    "supertest": "^3.3.0"
+    "supertest": "^3.4.2"
   }
 }

@@ -11,31 +11,32 @@ beforeAll(async () => await dbHandler.connect());
 beforeAll(async () => await fixtureLoader.load());
 afterAll(async () => await dbHandler.closeDatabase());
 
-async function loginAsTom(password, agent) {
+let jwtToken;
+
+async function loginAsTom(password) {
   let email = fixtures.users.tom.email;
-  let response = await agent
+  let response = await request(app)
     .post("/api/user/login")
     .send({ user: { email, password } });
 
   expect(response.statusCode).toBe(status.OK);
+  jwtToken = response.body.user.token;
 }
 
 test("Change password on the current user", async () => {
-  const agent = request.agent(app);
-
-  await loginAsTom(fixtures.users.tom.password, agent);
+  await loginAsTom(fixtures.users.tom.password);
 
   const newPassword = "new-password";
   const updatedUser = {
     password: newPassword
   };
 
-  let response = await agent
+  let response = await request(app)
     .put("/api/user/change_password")
+    .set("Authorization", "Bearer " + jwtToken)
     .send({ user: updatedUser });
 
   expect(response.statusCode).toBe(status.OK);
 
-  const agent2 = request(app);
-  await loginAsTom(newPassword, agent2);
+  await loginAsTom(newPassword);
 });

@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-function getJWTSingingSecret() {
+function getJWTSigningSecret() {
   const secret = process.env.JWT_SIGNING_SECRET;
   if (!secret) {
     throw new Error("Missing secrets to sign JWT token");
@@ -9,5 +9,5 @@ function getJWTSingingSecret() {
 }
 
 module.exports = {
-  secret: getJWTSingingSecret()
+  secret: getJWTSigningSecret()
 };

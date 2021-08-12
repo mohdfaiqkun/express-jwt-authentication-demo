@@ -19,10 +19,8 @@ const UserSchema = new mongoose.Schema({
     lowercase: true,
     required: [true, "cannot be blank"]
   },
-  password: {
-    passwordHash: String,
-    passwordSalt: String
-  }
+  passwordHash: String,
+  passwordSalt: String
 });
 
 UserSchema.methods.setPassword = function(password) {

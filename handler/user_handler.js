@@ -19,6 +19,7 @@ async function login(req, res) {
   const password = req.body.user.password;
 
   let user = await User.findOne({ email: email });
+
   if (!user || !user.validPassword(password)) {
     return res.status(status.UNAUTHORIZED).json({
       error: { message: "email or password is invalid" }
@@ -42,12 +43,17 @@ async function changePassword(req, res) {
   const user = await User.findById(userId);
 
   const newUserProfile = req.body.user;
-  if (newUserProfile.password) {
-    user.setPassword(newUserProfile.password);
-  }
+  try {
+    if (newUserProfile.password) {
+      user.setPassword(newUserProfile.password);
+    }
 
-  await user.save();
-  return res.json({ status: "done" });
+    await user.save();
+    return res.json({ status: "done" });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
 }
 
 async function logout(req, res) {

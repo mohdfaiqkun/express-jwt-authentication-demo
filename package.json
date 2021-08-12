@@ -21,7 +21,7 @@
     "event-stream": "^4.0.1",
     "express": "~4.16.0",
     "express-async-wrap": "^1.0.0",
-    "express-jwt": "^6.0.0",
+    "express-jwt": "^6.1.0",
     "http-status": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.6",

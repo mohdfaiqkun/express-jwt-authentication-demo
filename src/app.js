@@ -12,6 +12,7 @@ const express = require("express"),
 const isProduction = process.env.NODE_ENV === "production";
 
 const app = express();
+app.use(cookieParser());
 
 // middlewares
 app.use(cors());
@@ -65,7 +66,5 @@ app.use(function(err, req, res, next) {
     }
   });
 });
-
-app.use(cookieParser());
 
 module.exports = app;
